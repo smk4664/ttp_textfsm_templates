@@ -1,5 +1,8 @@
-System serial number : {{ serial_number }}
-
-Switch Ports Model SW Version SW Image Mode
------- ----- ----- ---------- ---------- ----
-{{ ignore("(\*?)") }} {{ ignore("\d+") }} {{ ignore("\d+") }} {{ model }} {{ version }} {{ image_name }} {{ mode }}
+## ------------------------------------------------------------
+## Stack Table (anchored to literal header lines)
+## ------------------------------------------------------------
+<group name="stack_info*" method="table">
+Switch Ports Model              SW Version        SW Image              Mode   
+------ ----- -----              ----------        ----------            ----   
+{{ active | match("\*") | default(False) }} {{ switch | to_int }} {{ ports }} {{ model | re("[A-Z0-9-]+") }} {{ sw_version }} {{ sw_image }} {{ mode }}
+</group>
